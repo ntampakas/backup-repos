@@ -73,9 +73,6 @@ def download_zip_and_upload_repos(org_name, output_dir="/tmp/repos", bucket_name
             print(f"Successfully uploaded {repo_name}.zip to S3.")
         except (NoCredentialsError, PartialCredentialsError) as e:
             print(f"Failed to upload {repo_name}.zip to S3: {e}")
-        except Exception as e:
-            print(f"An error occurred while uploading {repo_name}.zip: {e}")
-        
         except subprocess.CalledProcessError as e:
             print(f"Failed to clone repository {repo_name}: {e}")
         except Exception as e:
