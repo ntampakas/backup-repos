@@ -1,7 +1,6 @@
 name: Backup repos
 on:
   workflow_dispatch:
-    types: [backup-repos]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
