@@ -27,6 +27,11 @@ jobs:
 #          role-duration-seconds: 1800
 #          aws-region: eu-central-1
 
+      - name: Install python libraries
+        run: |
+          pip install requests
+          pip install boto3
+
       - name: Backup repos and upload to S3
         run: |
-          ./hello_world.py
+          ./backup_repos.py
