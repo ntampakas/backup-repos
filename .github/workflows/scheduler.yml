@@ -19,6 +19,6 @@ jobs:
     steps:      
       - name: Wake up backup workflow
         env:
-          GH_OPS_PAT: ${{ secrets.PAT_OPS_TRIGGER }}
+          GH_OPS_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl -H "authorization: token $GH_OPS_PAT" 'https://api.github.com/repos/ntampakas/backup-repos/actions/workflows/backup_repos.yml/dispatches' -d '{"ref": "backup_gh"}'
