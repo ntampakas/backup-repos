@@ -1,10 +1,7 @@
 name: Backup repos
 on:
-  #push:
-  #  branches: [ backup_gh ]
   workflow_dispatch:
-  #repository_dispatch:
-  #  types: [backup-repos]
+    types: [backup-repos]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
