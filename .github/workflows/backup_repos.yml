@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:  
-  backup\&upload:
+  backup_upload:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
