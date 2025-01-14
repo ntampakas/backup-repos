@@ -20,12 +20,12 @@ jobs:
         with:
           persist-credentials: false
           
-#      - name: Configure AWS Credentials
-#        uses: aws-actions/configure-aws-credentials@v4
-#        with:
-#          role-to-assume: 
-#          role-duration-seconds: 1800
-#          aws-region: eu-central-1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::490752553772:role/backup_gh-assume_role-slc
+          role-duration-seconds: 2400
+          aws-region: eu-central-1
 
       - name: Install python libraries
         run: |
