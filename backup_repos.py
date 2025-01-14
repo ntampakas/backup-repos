@@ -68,15 +68,19 @@ def download_zip_and_upload_repos(org_name, output_dir="/tmp/repos", bucket_name
             print(f"Deleted the cloned directory for {repo_name}.")
             
             # Upload to S3
-        try:
-            s3_client.upload_file(zip_file, bucket_name, os.path.basename(zip_file))
-            print(f"Successfully uploaded {repo_name}.zip to S3.")
-        except (NoCredentialsError, PartialCredentialsError) as e:
-            print(f"Failed to upload {repo_name}.zip to S3: {e}")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to clone repository {repo_name}: {e}")
-        except Exception as e:
-            print(f"An error occurred while processing {repo_name}: {e}")
+            print(f"Uploading {zip_file} to S3 bucket {bucket_name}...")    
+            try:
+                s3_client.upload_file(zip_file, bucket_name, os.path.basename(zip_file))
+                print(f"Successfully uploaded {repo_name}.zip to S3.")
+            except (NoCredentialsError, PartialCredentialsError) as e:
+                print(f"Failed to upload {repo_name}.zip to S3: {e}")
+            except Exception as e:
+                print(f"An error occurred while processing {repo_name}: {e}")
+
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to clone repository {repo_name}: {e}")
+    except Exception as e:
+        print(f"An error occurred while processing {repo_name}: {e}")
     
     print("All repositories have been downloaded, zipped, and uploaded to S3.")
 
