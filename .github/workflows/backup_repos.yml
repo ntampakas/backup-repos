@@ -1,7 +1,9 @@
 name: Backup repos
 on:
   push:
-    branches: [ main ]
+    branches: [ backup_gh ]
+  schedule:
+    - cron: '*/35 * * * *'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
