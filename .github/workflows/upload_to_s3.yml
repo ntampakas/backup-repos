@@ -1,0 +1,32 @@
+name: Backup repos
+on:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:  
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:      
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v4
+#        with:
+#          role-to-assume: 
+#          role-duration-seconds: 1800
+#          aws-region: eu-central-1
+
+      - name: Backup repos and upload to S3
+        run: |
+          ls
